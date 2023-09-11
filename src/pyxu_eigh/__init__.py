@@ -7,5 +7,4 @@ except ImportError:
 
 from .math import eigh
 
-
 __all__ = ("eigh",)
