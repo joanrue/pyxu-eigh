@@ -7,7 +7,7 @@ import pyxu.util as pxu
 __all__ = ["eigh"]
 
 
-def eigh(arr: pxt.NDArray, arg_shape: pxt.NDArrayShape, normalize=True):
+def eigh(arr: pxt.NDArray, arg_shape: pxt.NDArrayShape, normalize: bool = True):
     r"""
     Batch computation of the eigenvalues and eigenvectors of a batch (:math:`\mathcal{N}`-shaped, where
     :math:`\mathcal{N} = (N_{1}, \cdots, N_{k})`) of complex Hermitian (conjugate symmetric) or a real symmetric
@@ -18,22 +18,28 @@ def eigh(arr: pxt.NDArray, arg_shape: pxt.NDArrayShape, normalize=True):
     Returns two objects, an :math:`\mathcal{N}`-shaped batch of 1-D arrays containing the eigenvalues, and an
     :math:`\mathcal{N}`-shaped batch of 2-D square matrices of the corresponding eigenvectors (in columns).
 
-    Closed form 2x2 from https://hal.science/hal-01501221/document
-    Closed form 3x3 from https://www.wikiwand.com/en/Eigenvalue_algorithm
-
-
     Parameters
     ----------
-    arr: (…, M, M) pxt.NDArray
+
+    arr: pxt.NDArray
+        (..., M, M) Input array of complex hermitian or real symmetric matrices.
     arg_shape: pxt.NDArrayShape
+        Shape of the input array
     normalize: bool
+        Normalize eigenvectors to have unit norm (l2).
 
     Returns
     -------
-    w: (…, M) pxt.NDArray
-        The eigenvalues in ascending order, each repeated according to its multiplicity.
-    v: (…, M, M) pxt.NDArray
-        The column v[..., i] is the normalized eigenvector corresponding to the eigenvalue w[..., i].
+    w: pxt.NDArray
+        (..., M) The eigenvalues in ascending order, each repeated according to its multiplicity.
+    v: pxt.NDArray
+        (..., M, M) The column v[..., i] is the normalized eigenvector corresponding to the eigenvalue w[..., i].
+
+
+    References
+    ----------
+    * Closed form 2x2 from https://hal.science/hal-01501221/document.
+    * Closed form 3x3 from https://www.wikiwand.com/en/Eigenvalue_algorithm.
     """
     assert len(np.unique(arg_shape))
     st_sh = arr.shape[:-1]
