@@ -2,16 +2,16 @@ pyxu-eigh
 =========
 
 .. image:: https://img.shields.io/pypi/l/pyxu-eigh.svg?color=green
-   :target: https://github.com/AIR-Hub/pyxu-eigh/raw/main/LICENSE
+   :target: https://github.com/joanrue/pyxu-eigh/raw/main/LICENSE
    :alt: License MIT
 .. image:: https://img.shields.io/pypi/v/pyxu-eigh.svg?color=green
    :target: https://pypi.org/project/pyxu-eigh
    :alt: PyPI
-.. image:: https://github.com/AIR-Hub/pyxu-eigh/workflows/tests/badge.svg
-   :target: https://github.com/AIR-Hub/pyxu-eigh/actions
+.. image:: https://github.com/joanrue/pyxu-eigh/workflows/tests/badge.svg
+   :target: https://github.com/joanrue/pyxu-eigh/actions
    :alt: tests
-.. image:: https://codecov.io/gh/AIR-Hub/pyxu-eigh/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/AIR-Hub/pyxu-eigh
+.. image:: https://codecov.io/gh/joanrue/pyxu-eigh/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/joanrue/pyxu-eigh
    :alt: codecov
 .. image:: https://img.shields.io/endpoint?url=https://pyxu-org.github.io/fair/shields/pyxu-eigh
    :alt: Pyxu score
@@ -38,7 +38,7 @@ To install latest development version :
 
 .. code-block:: bash
 
-   pip install git+https://github.com/AIR-Hub/pyxu-eigh.git
+   pip install git+https://github.com/joanrue/pyxu-eigh.git
 
 
 Contributing
@@ -58,7 +58,7 @@ Issues
 
 If you encounter any problems, please `file an issue`_ along with a detailed description.
 
-.. _Pyxu: https://github.com/matthieumeo/pyxu
+.. _Pyxu: https://github.com/pyxu-org/pyxu
 .. _contributing-guide: https://pyxu-org.github.io/fair/contribute.html
 .. _developer notes: https://pyxu-org.github.io/fair/dev_notes.html
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
@@ -68,9 +68,9 @@ If you encounter any problems, please `file an issue`_ along with a detailed des
 .. _GNU LGPL v3.0: http://www.gnu.org/licenses/lgpl-3.0.txt
 .. _Apache Software License 2.0: http://www.apache.org/licenses/LICENSE-2.0
 .. _Mozilla Public License 2.0: https://www.mozilla.org/media/MPL/2.0/index.txt
-.. _cookiecutter-pyxu: https://github.com/matthieumeo/cookiecutter-pyxu
+.. _cookiecutter-pyxu: https://github.com/pyxu-org/cookiecutter-pyxu
 
-.. _file an issue: https://github.com/AIR-Hub/pyxu-eigh/issues
+.. _file an issue: https://github.com/joanrue/pyxu-eigh/issues
 
 .. _tox: https://tox.readthedocs.io/en/latest/
 .. _pip: https://pypi.org/project/pip/

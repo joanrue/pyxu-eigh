@@ -7,7 +7,7 @@ import pyxu.util as pxu
 __all__ = ["eigh"]
 
 
-def eigh(arr: pxt.NDArray, arg_shape: pxt.NDArrayShape, normalize: bool = True):
+def eigh(arr: pxt.NDArray, dim_shape: pxt.NDArrayShape, normalize=True):
     r"""
     Batch computation of the eigenvalues and eigenvectors of a batch (:math:`\mathcal{N}`-shaped, where
     :math:`\mathcal{N} = (N_{1}, \cdots, N_{k})`) of complex Hermitian (conjugate symmetric) or a real symmetric
@@ -18,41 +18,27 @@ def eigh(arr: pxt.NDArray, arg_shape: pxt.NDArrayShape, normalize: bool = True):
     Returns two objects, an :math:`\mathcal{N}`-shaped batch of 1-D arrays containing the eigenvalues, and an
     :math:`\mathcal{N}`-shaped batch of 2-D square matrices of the corresponding eigenvectors (in columns).
 
+    Closed form 2x2 from https://hal.science/hal-01501221/document
+    Closed form 3x3 from https://www.wikiwand.com/en/Eigenvalue_algorithm
+
+
     Parameters
     ----------
-
-    arr: pxt.NDArray
-        (..., M, M) Input array of complex hermitian or real symmetric matrices.
-    arg_shape: pxt.NDArrayShape
-        Shape of the input array
+    arr: NDArray
+        (..., M, M)
+    dim_shape: NDArrayShape
     normalize: bool
-        Normalize eigenvectors to have unit norm (l2).
 
     Returns
     -------
-    w: pxt.NDArray
-        (..., M) The eigenvalues in ascending order, each repeated according to its multiplicity.
-    v: pxt.NDArray
-        (..., M, M) The column v[..., i] is the normalized eigenvector corresponding to the eigenvalue w[..., i].
-
-
-    References
-    ----------
-    * Closed form 2x2 from https://hal.science/hal-01501221/document.
-    * Closed form 3x3 from https://www.wikiwand.com/en/Eigenvalue_algorithm.
+    w: NDArray
+        (…, M) eigenvalues in ascending order, each repeated according to its multiplicity.
+    v: NDArray
+        (…, M, M), where column v[..., i] is the normalized eigenvector corresponding to the eigenvalue w[..., i].
     """
-    assert len(np.unique(arg_shape))
-    st_sh = arr.shape[:-1]
-    st_size = np.prod(st_sh)
-    N = pxd.NDArrayInfo
-    xp = pxu.get_array_module(arr)
+    assert len(np.unique(dim_shape))
 
-    if N.from_obj(arr) == N.DASK:
-        chunksize = arr.chunksize
-        arr = arr.reshape(*st_sh, *arg_shape)
-        arr = arr.rechunk(chunks=(*((-1),) * len(st_sh), *((-1),) * len(arg_shape)))
-    else:
-        arr = arr.reshape(st_size, *arg_shape)
+    xp = pxu.get_array_module(arr)
 
     w = xp.zeros_like(arr[..., 0])
     v = xp.zeros_like(arr)
@@ -62,12 +48,6 @@ def eigh(arr: pxt.NDArray, arg_shape: pxt.NDArrayShape, normalize: bool = True):
     if normalize:
         v /= xp.linalg.norm(v, axis=-2, keepdims=True)
 
-    w = w.reshape((*st_sh, -1))
-    v = v.reshape((*st_sh, -1))
-
-    if N.from_obj(arr) == N.DASK:
-        w = w.rechunk(chunks=(*chunksize[:-1], -1))
-        v = v.rechunk(chunks=(*chunksize[:-1], -1))
     return w, v
 
 
