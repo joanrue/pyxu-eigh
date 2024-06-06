@@ -13,9 +13,9 @@ pyxu-eigh
 .. image:: https://codecov.io/gh/joanrue/pyxu-eigh/branch/main/graph/badge.svg
    :target: https://codecov.io/gh/joanrue/pyxu-eigh
    :alt: codecov
-.. image:: https://img.shields.io/endpoint?url=https://pyxu-org.github.io/fair/shields/pyxu-eigh
-   :alt: Pyxu score
-   :target: https://pyxu-org.github.io/fair/score.html
+.. .. image:: https://img.shields.io/endpoint?url=https://pyxu-org.github.io/fair/shields/pyxu-eigh
+..    :alt: Pyxu score
+..    :target: https://pyxu-org.github.io/fair/score.html
 
 Pyxu plugin to compute the eigenvectors and eigenvalues of a real symmetric matrix
 ----------------------------------------------------------------------------------
